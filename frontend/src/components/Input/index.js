@@ -2,7 +2,7 @@ import React      from 'react';
 import classNames from 'classnames';
 import styles     from './Input.module.scss';
 
-const Input = ({ field, form, meta, ...props }) => {
+const Input = ({field, form, meta, ...props }) => {
 
   const inputClassName = classNames( styles.field, {
     [styles.fieldInvalid]: (meta.touched && meta.error),
@@ -11,8 +11,7 @@ const Input = ({ field, form, meta, ...props }) => {
 
   return (
     <label className={styles.container}>
-      <div>{props.label}</div>
-      <input {...field} className={inputClassName} {...props}/>
+      <input {...field} className={inputClassName} {...props} placeholder={props.label}/>
       {meta.error && <div className={styles.errorTip}>{meta.error}</div>}
     </label>
   );

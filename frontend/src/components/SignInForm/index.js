@@ -1,58 +1,66 @@
-import React                   from 'react';
-import { Formik, Form, Field } from 'formik';
-import Input                   from '../Input';
-import * as Yup                from 'yup';
+import React from 'react';
+import {Form, Field, withFormik} from 'formik';
+import Input from '../Input';
+import * as Yup from 'yup';
+import styles from './SignInForm.module.scss'
 
-const loginSchema = Yup.object().shape( {
-                                          email: Yup.string().email().required(),
-                                          password: Yup.string().min( 8 )
-                                        } );
+const loginSchema = Yup.object().shape({
+    email: Yup.string().email().required(),
+    password: Yup.string().min(8).required()
+});
 
-const SignInForm = () => {
+const SignInForm = (props) => {
+    const {
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+    } = props;
 
-  const handleSubmit = (values, formikBag) => {
-    console.log( values );
-    console.log( formikBag );
-  };
-
-  const initialValues = {
-    email: '',
-    password: '',
-  };
-  return (
-
-    <Formik onSubmit={handleSubmit} validationSchema={loginSchema} initialValues={initialValues}>
-      {
-        ({
-           values,
-           errors,
-           touched,
-           handleChange,
-           handleBlur,
-           handleSubmit,
-           isSubmitting,
-         }) => (
-          <Form>
+    return (
+        <Form className={styles.formContainer} >
             <Field
-              name="email"
-              type="email">
-              {
-                (emailProps) => (<Input {...emailProps} label={'Email'}/>)
-              }
-            </Field>
 
-            {/*
-             <Field children={Input}/>
-             */}
-            {false}
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-          </Form>
-        )
-      }
-    </Formik>
-  );
+                name="email"
+            >
+                {
+                    (emailProps) => (<Input {...emailProps}
+
+                                            type="email"
+                                            label={'Email'}/>)
+                }
+            </Field>
+            <Field
+                name='password'
+            >
+                {
+                    (passwordProps) => (<Input {...passwordProps}
+                                               type='password'
+                                               label={'Password'}/>)
+                }
+            </Field>
+                <button
+                className={styles.submitButton}
+                    type="submit"
+                        disabled={isSubmitting}>
+                    Login
+                </button>
+        </Form>
+    )
 };
 
-export default SignInForm;
+export default withFormik({
+    mapPropsToValues: () => ({
+        email: '',
+        password: '',
+    }),
+    handleSubmit: (values, formikBag) => {
+        console.log(values);
+        console.log(formikBag);
+    },
+    validationSchema: loginSchema,
+
+})(SignInForm);

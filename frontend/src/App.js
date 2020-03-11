@@ -6,6 +6,7 @@ const SignUpPage = lazy(() => import( './pages/SignUpPage.js' ));
 const SignInPage = lazy(() => import( './pages/SignInPage.js' ));
 const HomePage = lazy(() => import( './pages/HomePage.js' ));
 const TestPage = lazy(() => import('./pages/TestPage.js'));
+
 const fallbackElem = <div className='loader'>Loading...</div>;
 
 export const ThemeContext = React.createContext('dark');
@@ -17,7 +18,6 @@ class App extends Component {
     this.state = {
       theme: 'light',
     };
-
   }
 
   changeTheme = () => {

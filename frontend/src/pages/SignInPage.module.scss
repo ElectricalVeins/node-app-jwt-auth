@@ -1,0 +1,19 @@
+.formWrapper{
+  min-height: 100vh;
+  background-color: #3ea9f5;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: Halvetica, sans-serif;
+}
+
+.loginText{
+
+  color: white;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 600;
+
+  margin: 20px 0;
+}
