@@ -4,7 +4,7 @@ import './App.css'
 const SignUpPage = lazy( () => import( './pages/SignUpPage.js' ) );
 const SignInPage = lazy( () => import( './pages/SignInPage.js' ) );
 const HomePage = lazy( () => import( './pages/HomePage.js' ) );
-
+const TestPage = lazy(()=>import('./pages/TestPage.js'))
 const fallbackElem = <div className='loader'>Loading...</div>;
 
 function App () {
@@ -16,6 +16,7 @@ function App () {
           <Route exact path="/" component={HomePage}/>
           <Route path={['/signup', '/sign_up']} component={SignUpPage}/>
           <Route path={['/signin', '/sign_in', '/login']} component={SignInPage}/>
+          <Route path={['/test']} component={TestPage}/>
         </Switch>
       </Suspense>
     </Router>
