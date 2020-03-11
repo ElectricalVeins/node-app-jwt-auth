@@ -2,6 +2,7 @@ import React from 'react';
 import {withFormik, Form, Field} from 'formik';
 import Input from "../Input";
 import * as Yup from 'yup';
+import styles from './SignUpForm.module.scss'
 
 const signUpSchema = Yup.object().shape({
         firstName: Yup.string().trim().min(4).max(255).required(),
@@ -23,7 +24,25 @@ const SignUpForm = (props) => {
     } = props;
 
     return (
-        <Form>
+        <Form className={styles.formContainer}>
+            <Field
+                name='firstName'
+            >
+                {
+                    (props) => (<Input {...props}
+                                       type='text'
+                                       label={'First Name'}/>)
+                }
+            </Field>
+            <Field
+                name='lastName'
+            >
+                {
+                    (props) => (<Input {...props}
+                                       type='text'
+                                       label={'Last Name'}/>)
+                }
+            </Field>
             <Field
                 name="email"
             >
@@ -51,30 +70,12 @@ const SignUpForm = (props) => {
                                        label={'Confirm Password'}/>)
                 }
             </Field>
-            <Field
-                name='firstName'
-            >
-                {
-                    (props) => (<Input {...props}
-                                       type='text'
-                                       label={'First Name'}/>)
-                }
-            </Field>
-            <Field
-                name='lastName'
-            >
-                {
-                    (props) => (<Input {...props}
-                                       type='text'
-                                       label={'Last Name'}/>)
-                }
-            </Field>
-            <div>
+
                 <button type="submit"
+                        className={styles.submitButton}
                         disabled={isSubmitting}>
-                    Submit
+                    Create account
                 </button>
-            </div>
         </Form>
     );
 };
