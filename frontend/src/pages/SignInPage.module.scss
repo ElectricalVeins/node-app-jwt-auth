@@ -1,6 +1,5 @@
-.formWrapper{
-  min-height: 100vh;
-  background-color: #3ea9f5;
+.formWrapperSignIn{
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -8,12 +7,50 @@
   font-family: Halvetica, sans-serif;
 }
 
-.loginText{
-
+.loginTextSignIn{
   color: white;
   text-transform: uppercase;
   font-size: 30px;
   font-weight: 600;
 
   margin: 20px 0;
+}
+
+.screenSignIn{
+  min-height: 100vh;
+  background-color: #3ea9f5;
+}
+
+
+.textWrapperSignIn{
+  max-width: 500px;
+  text-align: center;
+}
+
+.loginLinkSignIn{
+  color: white;
+
+  font-family: Halvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+
+  text-decoration:none;
+
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 15px;
+
+  margin-top: 40px;
+  width: 100px;
+  text-align: center;
+}
+
+.loginLinkWrapperSignIn{
+  background-color: #3ea9f5;
+  display: flex;
+  justify-content: space-around;
+  img{
+    margin-top: 40px;
+    object-fit: contain;
+  }
 }

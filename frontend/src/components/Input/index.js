@@ -11,7 +11,8 @@ const Input = ({field, form, meta, ...props }) => {
 
   return (
     <label className={styles.container}>
-      <input {...field} className={inputClassName} {...props} placeholder={props.label}/>
+      <div>{props.label}</div>
+      <input {...field} className={inputClassName} {...props} placeholder={props.placeholder}/>
       {meta.error && <div className={styles.errorTip}>{meta.error}</div>}
     </label>
   );

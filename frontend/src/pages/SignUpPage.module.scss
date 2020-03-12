@@ -1,45 +1,31 @@
 @import "SignInPage.module";
 
+.screenSignUp{
+  @extend .screenSignIn;
+}
+
 .loginTextH1{
-@extend .loginText;
+@extend .loginTextSignIn;
 }
 .formWrapperSignUp{
-  @extend .formWrapper;
+  @extend .formWrapperSignIn;
 }
 
 .loginTextH2{
-  @extend .loginText;
+  @extend .loginTextSignIn;
   font-size: 18px;
   font-weight: 600;
 }
 
-.textWrapper{
-  max-width: 500px;
-  text-align: center;
+.textWrapperSignUp{
+@extend .textWrapperSignIn
 }
 
-.loginLink{
-  color: white;
-
-  font-family: Halvetica, sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-
-  text-decoration:none;
-
-  border: 1px solid white;
-  border-radius: 5px;
-  padding: 15px;
-
-  margin-top: 40px;
+.loginLinkSignUp{
+@extend .loginLinkSignIn;
 }
 
-.loginLinkWrapper{
-  background-color: #3ea9f5;
-  display: flex;
-  justify-content: space-around;
-  img{
-    margin-top: 40px;
-    object-fit: contain;
-  }
+.loginLinkWrapperSignUp {
+@extend .loginLinkWrapperSignIn;
 }
+

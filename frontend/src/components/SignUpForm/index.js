@@ -31,7 +31,7 @@ const SignUpForm = (props) => {
                 {
                     (props) => (<Input {...props}
                                        type='text'
-                                       label={'First Name'}/>)
+                                       placeholder={'First Name'}/>)
                 }
             </Field>
             <Field
@@ -40,7 +40,7 @@ const SignUpForm = (props) => {
                 {
                     (props) => (<Input {...props}
                                        type='text'
-                                       label={'Last Name'}/>)
+                                       placeholder={'Last Name'}/>)
                 }
             </Field>
             <Field
@@ -49,7 +49,7 @@ const SignUpForm = (props) => {
                 {
                     (props) => (<Input {...props}
                                        type="email"
-                                       label={'Email'}/>)
+                                       placeholder={'Email'}/>)
                 }
             </Field>
             <Field
@@ -58,16 +58,14 @@ const SignUpForm = (props) => {
                 {
                     (props) => (<Input {...props}
                                        type="password"
-                                       label={'Password'}/>)
+                                       placeholder={'Password'}/>)
                 }
             </Field>
-            <Field
-                name="Confirm Password"
-            >
+            <Field name="Confirm Password">
                 {
                     (props) => (<Input {...props}
                                        type="password"
-                                       label={'Confirm Password'}/>)
+                                       placeholder={'Confirm Password'}/>)
                 }
             </Field>
 

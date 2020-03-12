@@ -21,33 +21,27 @@ const SignInForm = (props) => {
     } = props;
 
     return (
-        <Form className={styles.formContainer} >
-            <Field
-
-                name="email"
-            >
+        <Form className={styles.formContainer}>
+            <Field name="email">
                 {
                     (emailProps) => (<Input {...emailProps}
-
                                             type="email"
-                                            label={'Email'}/>)
+                                            placeholder={'Email'}/>)
                 }
             </Field>
-            <Field
-                name='password'
-            >
+            <Field name='password'>
                 {
                     (passwordProps) => (<Input {...passwordProps}
                                                type='password'
-                                               label={'Password'}/>)
+                                               placeholder={'Password'}/>)
                 }
             </Field>
-                <button
+            <button
                 className={styles.submitButton}
-                    type="submit"
-                        disabled={isSubmitting}>
-                    Login
-                </button>
+                type="submit"
+                disabled={isSubmitting}>
+                Login
+            </button>
         </Form>
     )
 };
