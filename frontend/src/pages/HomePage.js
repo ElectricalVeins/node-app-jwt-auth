@@ -2,13 +2,15 @@ import React, { Component, useState } from 'react';
 import { withRouter, Route } from 'react-router';
 import styles from './HomePage.module.scss';
 import classNames from 'classnames';
-import AppContext from '../state';
 import { THEME_MODE } from '../constants';
+import Navigation from '../components/Navigation';
+import PageHeader from '../components/PageHeader';
+import withAppContext from '../components/HoCs/withAppContext.js';
 
 class HomePage extends Component {
 
   changeTheme = () => {
-    const { state: appState, setState: appSetState } = this.context;
+    const { state: appState, setState: appSetState } = this.props;
     appSetState({
                   theme: appState.theme === THEME_MODE.LIGHT
                          ? THEME_MODE.DARK
@@ -17,7 +19,9 @@ class HomePage extends Component {
   };
 
   addValueToAppState = () => {
-    this.context.setState({ items: [1, 2, 3, 4, 5] });
+    this.props.setState({
+                          items: [1, 2, 3, 4, 5]
+                        });
   };
 
   render () {
@@ -30,12 +34,14 @@ class HomePage extends Component {
     this.setState();
     this.forceUpdate()*/
 
-    const contextValue = this.context;
+    const contextValue = this.props;
 
     const appState = contextValue.state;
 
     return (
       <>
+        <PageHeader/>
+        <Navigation/>
         <h1>{JSON.stringify(appState, null, 4)}</h1>
         <button onClick={this.changeTheme}> Change Theme</button>
         <button onClick={this.addValueToAppState}> Change App State</button>
@@ -44,9 +50,4 @@ class HomePage extends Component {
   }
 }
 
-HomePage.defaultProps = {};
-HomePage.propTypes = {};
-
-HomePage.contextType = AppContext;
-
-export default withRouter(HomePage);
+export default withRouter(withAppContext(HomePage));

@@ -5,13 +5,22 @@ import * as Yup from 'yup';
 import styles from './SignInForm.module.scss'
 
 const loginSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().min(8).required()
+    email: Yup.string().email().matches().required(),
+    password: Yup.string().min(8).required(),
+    confirmPassword: Yup.string().min(8).required(),
 });
 
-const emailSchema=Yup.string().email().required();
-const passwordSchema=Yup.string().min(8).required();
 
+const CustomField=(fieldProps)=>{
+    return(
+      <Field {...fieldProps} >
+          {
+
+              (props)=>(<Input {...props} />)
+          }
+      </Field>
+    )
+};
 
 
 const SignInForm = (props) => {
@@ -27,31 +36,11 @@ const SignInForm = (props) => {
         isSubmitting,
     } = props;
 
-    const validateEmail = async (value) => {
-        try {
-            await emailSchema.validate(value);
-        }
-        catch (e) {
-            return e.message
-        }
-    };
-
-    const validatePass =async (value) =>{
-        try {
-            await passwordSchema.validate(value);
-        }
-        catch (e) {
-            return e.message
-        }
-
-    }
-
     return (
         <Form className={styles.formContainer}>
             <Field name="email"
                    type="text"
-                   value={values.email}
-                   validate={validateEmail}>
+            >
                 {
                     (emailProps) => (<Input {...emailProps}
                                             placeholder={'Email'}
@@ -61,14 +50,14 @@ const SignInForm = (props) => {
             </Field>
             <Field name='password'
                    type='password'
-                   value={values.password}
-                   validate={validatePass}>
+            >
                 {
                     (passwordProps) => (<Input {...passwordProps}
                                                placeholder={'Password'}
                     />)
                 }
             </Field>
+            <CustomField name='confirmPassword' type='password' placeholder='Confirm Password' />
             <button
                 className={styles.submitButton}
                 type="submit"
@@ -88,6 +77,5 @@ export default withFormik({
         console.log(values);
         console.log(formikBag);
     },
-   // validationSchema: loginSchema,
-
+    validationSchema: loginSchema,
 })(SignInForm);

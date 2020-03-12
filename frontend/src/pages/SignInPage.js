@@ -1,6 +1,5 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import Navigation from '../components/Navigation';
 import SignInForm from '../components/SignInForm';
 import styles from './SignInPage.module.scss'
 import {NavLink} from "react-router-dom";
