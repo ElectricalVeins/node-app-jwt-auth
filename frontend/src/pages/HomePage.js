@@ -1,52 +1,47 @@
-import React, { Component, useState }            from 'react';
-import { withRouter }                            from 'react-router';
-import { ThemeContext }                          from '../App.js';
-import styles                                    from './HomePage.module.scss';
-import classNames                                from 'classnames';
-import Icon                                      from '@mdi/react';
-import { mdiWhiteBalanceSunny, mdiWeatherNight } from '@mdi/js';
+import React, { Component, useState } from 'react';
+import { withRouter, Route } from 'react-router';
+import styles from './HomePage.module.scss';
+import classNames from 'classnames';
+import AppContext from '../state';
+import { THEME_MODE } from '../constants';
 
-function ThemeButton () {
+class HomePage extends Component {
 
-  return (
-    <ThemeContext.Consumer>
-      {
-        value => {
-          const { theme, changeTheme } = value;
-          return (<Icon onClick={changeTheme} path={theme === 'light'
-                                                    ? mdiWeatherNight
-                                                    : mdiWhiteBalanceSunny} size={'40px'} color={theme === 'light'
-                                                                                                 ? 'black'
-                                                                                                 : 'white'}/>);
-        }
-      }
-    </ThemeContext.Consumer>
-  );
-}
-
-class Header extends Component {
+  changeTheme = () => {
+    const { state: appState, setState: appSetState } = this.context;
+    appSetState({
+                  theme: appState.theme === THEME_MODE.LIGHT
+                         ? THEME_MODE.DARK
+                         : THEME_MODE.LIGHT
+                });
+  };
 
   render () {
-    const { theme } = this.context;
-    const headerClassName = classNames( styles.header, {
-      [styles.lightTheme]: theme === 'light',
-      [styles.darkTheme]: theme === 'dark',
-    } );
+    /*//своцства класса
+    this.props;
+    this.state;
+    this.context;
+
+    //методы экзмепляра
+    this.setState();
+    this.forceUpdate()*/
+
+    const contextValue = this.context;
+
+    const appState = contextValue.state;
+
     return (
-      <header className={headerClassName}>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, laboriosam.</p>
-        <ThemeButton/>
-      </header>
+      <>
+        <h1>{JSON.stringify(appState, null, 4)}</h1>
+        <button onClick={this.changeTheme}> Change Theme</button>
+      </>
     );
   }
 }
 
-Header.contextType = ThemeContext;
+HomePage.defaultProps = {};
+HomePage.propTypes = {};
 
-const HomePage = props => {
-  return (
-    <Header/>
-  );
-};
+HomePage.contextType = AppContext;
 
-export default withRouter( HomePage );
+export default withRouter(HomePage);
