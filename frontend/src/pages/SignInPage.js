@@ -10,7 +10,7 @@ const SignInPage = props => {
     return (
         <div className={styles.screenSignIn}>
             <div className={styles.loginLinkWrapperSignIn}>
-                <img src="https://www.squadhelp.com/img/logo.png" alt=""/>
+                <img src="https://www.squadhelp.com/img/logo.png" alt="logo"/>
                 <NavLink className={styles.loginLinkSignIn} to="/signup">Sign Up</NavLink>
             </div>
             <div className={styles.formWrapperSignIn}>

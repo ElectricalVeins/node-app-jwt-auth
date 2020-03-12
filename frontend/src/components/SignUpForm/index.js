@@ -5,12 +5,12 @@ import * as Yup from 'yup';
 import styles from './SignUpForm.module.scss'
 
 const signUpSchema = Yup.object().shape({
-        firstName: Yup.string().trim().min(4).max(255).required(),
-        lastName: Yup.string().trim().min(4).max(255).required(),
-        email: Yup.string().email().required(),
-        password: Yup.string().min(8).required(),
-        confirmPassword: Yup.string().min(8).oneOf([Yup.ref('password'), null], 'Passwords must match').required(),
-    });
+    firstName: Yup.string().trim().min(4).max(255).required(),
+    lastName: Yup.string().trim().min(4).max(255).required(),
+    email: Yup.string().email().required(),
+    password: Yup.string().min(8).required(),
+    confirmPassword: Yup.string().min(8).oneOf([Yup.ref('password'), null], 'Passwords must match').required(),
+});
 
 const SignUpForm = (props) => {
     const {
@@ -25,43 +25,35 @@ const SignUpForm = (props) => {
 
     return (
         <Form className={styles.formContainer}>
-            <Field
-                name='firstName'
-            >
+            <Field name='firstName'>
                 {
                     (props) => (<Input {...props}
                                        type='text'
                                        placeholder={'First Name'}/>)
                 }
             </Field>
-            <Field
-                name='lastName'
-            >
+            <Field name='lastName'>
                 {
                     (props) => (<Input {...props}
                                        type='text'
                                        placeholder={'Last Name'}/>)
                 }
             </Field>
-            <Field
-                name="email"
-            >
+            <Field name="email">
                 {
                     (props) => (<Input {...props}
                                        type="email"
                                        placeholder={'Email'}/>)
                 }
             </Field>
-            <Field
-                name="Password"
-            >
+            <Field name='password'>
                 {
-                    (props) => (<Input {...props}
-                                       type="password"
-                                       placeholder={'Password'}/>)
+                    (passwordProps) => (<Input {...passwordProps}
+                                               type='password'
+                                               placeholder={'Password'}/>)
                 }
             </Field>
-            <Field name="Confirm Password">
+            <Field name="confirmPassword">
                 {
                     (props) => (<Input {...props}
                                        type="password"
@@ -69,11 +61,11 @@ const SignUpForm = (props) => {
                 }
             </Field>
 
-                <button type="submit"
-                        className={styles.submitButton}
-                        disabled={isSubmitting}>
-                    Create account
-                </button>
+            <button type="submit"
+                    className={styles.submitButton}
+                    disabled={isSubmitting}>
+                Create account
+            </button>
         </Form>
     );
 };
