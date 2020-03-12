@@ -16,6 +16,10 @@ class HomePage extends Component {
                 });
   };
 
+  addValueToAppState = () => {
+    this.context.setState({ items: [1, 2, 3, 4, 5] });
+  };
+
   render () {
     /*//своцства класса
     this.props;
@@ -34,6 +38,7 @@ class HomePage extends Component {
       <>
         <h1>{JSON.stringify(appState, null, 4)}</h1>
         <button onClick={this.changeTheme}> Change Theme</button>
+        <button onClick={this.addValueToAppState}> Change App State</button>
       </>
     );
   }
