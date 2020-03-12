@@ -9,6 +9,11 @@ const loginSchema = Yup.object().shape({
     password: Yup.string().min(8).required()
 });
 
+const emailSchema=Yup.string().email().required();
+const passwordSchema=Yup.string().min(8).required();
+
+
+
 const SignInForm = (props) => {
     const {
         values,
@@ -22,27 +27,46 @@ const SignInForm = (props) => {
         isSubmitting,
     } = props;
 
-    const validate = (value) => {
+    const validateEmail = async (value) => {
+        try {
+            await emailSchema.validate(value);
+        }
+        catch (e) {
+            return e.message
+        }
+    };
+
+    const validatePass =async (value) =>{
+        try {
+            await passwordSchema.validate(value);
+        }
+        catch (e) {
+            return e.message
+        }
 
     }
 
     return (
         <Form className={styles.formContainer}>
-            <Field name="email">
+            <Field name="email"
+                   type="text"
+                   value={values.email}
+                   validate={validateEmail}>
                 {
                     (emailProps) => (<Input {...emailProps}
-                                            type="email"
                                             placeholder={'Email'}
 
                     />)
                 }
             </Field>
-            <Field name='password'>
+            <Field name='password'
+                   type='password'
+                   value={values.password}
+                   validate={validatePass}>
                 {
                     (passwordProps) => (<Input {...passwordProps}
-                                               type='password'
-                                               onBlur={handleBlur}
-                                               placeholder={'Password'}/>)
+                                               placeholder={'Password'}
+                    />)
                 }
             </Field>
             <button
@@ -64,6 +88,6 @@ export default withFormik({
         console.log(values);
         console.log(formikBag);
     },
-    validationSchema: loginSchema,
+   // validationSchema: loginSchema,
 
 })(SignInForm);
