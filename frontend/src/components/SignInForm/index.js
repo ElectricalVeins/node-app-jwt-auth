@@ -15,10 +15,16 @@ const SignInForm = (props) => {
         errors,
         touched,
         handleChange,
+        isValid,
         handleBlur,
+        validateOnBlur,
         handleSubmit,
         isSubmitting,
     } = props;
+
+    const validate = (value) => {
+
+    }
 
     return (
         <Form className={styles.formContainer}>
@@ -26,13 +32,16 @@ const SignInForm = (props) => {
                 {
                     (emailProps) => (<Input {...emailProps}
                                             type="email"
-                                            placeholder={'Email'}/>)
+                                            placeholder={'Email'}
+
+                    />)
                 }
             </Field>
             <Field name='password'>
                 {
                     (passwordProps) => (<Input {...passwordProps}
                                                type='password'
+                                               onBlur={handleBlur}
                                                placeholder={'Password'}/>)
                 }
             </Field>
