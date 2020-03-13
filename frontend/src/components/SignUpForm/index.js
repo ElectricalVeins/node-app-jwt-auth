@@ -3,6 +3,7 @@ import {withFormik, Form, Field} from 'formik';
 import Input from "../Input";
 import * as Yup from 'yup';
 import styles from './SignUpForm.module.scss'
+import {CustomField} from "../SignInForm";
 
 const signUpSchema = Yup.object().shape({
     firstName: Yup.string().trim().min(4).max(255).required(),
@@ -25,41 +26,12 @@ const SignUpForm = (props) => {
 
     return (
         <Form className={styles.formContainer}>
-            <Field name='firstName'>
-                {
-                    (props) => (<Input {...props}
-                                       type='text'
-                                       placeholder={'First Name'}/>)
-                }
-            </Field>
-            <Field name='lastName'>
-                {
-                    (props) => (<Input {...props}
-                                       type='text'
-                                       placeholder={'Last Name'}/>)
-                }
-            </Field>
-            <Field name="email">
-                {
-                    (props) => (<Input {...props}
-                                       type="email"
-                                       placeholder={'Email'}/>)
-                }
-            </Field>
-            <Field name='password'>
-                {
-                    (passwordProps) => (<Input {...passwordProps}
-                                               type='password'
-                                               placeholder={'Password'}/>)
-                }
-            </Field>
-            <Field name="confirmPassword">
-                {
-                    (props) => (<Input {...props}
-                                       type="password"
-                                       placeholder={'Confirm Password'}/>)
-                }
-            </Field>
+
+            <CustomField name='firstName' type='text' placeholder='First Name'/>
+            <CustomField name='lastName' type='text' placeholder='Last Name'/>
+            <CustomField name='email' type='email' placeholder='Email'/>
+            <CustomField name='password' type='password' placeholder='Password'/>
+            <CustomField name='confirmPassword' type='password' placeholder='Confirm Password'/>
 
             <button type="submit"
                     className={styles.submitButton}

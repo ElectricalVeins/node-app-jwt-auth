@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './Input.module.scss';
 
-const Input = (props) => {
-    const {field, form, meta} = props;
+const Input = ({field, form, meta,...props}) => {
+    console.log(props)
 
     const inputClassName = classNames(styles.field, {
         [styles.fieldInvalid]: (meta.touched && meta.error),

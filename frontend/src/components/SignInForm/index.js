@@ -7,24 +7,22 @@ import styles from './SignInForm.module.scss'
 const loginSchema = Yup.object().shape({
     email: Yup.string().email().required().label('Email'),
     password: Yup.string().min(8).required().label('Password'),
-    confirmPassword: Yup.string().min(8).required(),
 });
 
-
-const CustomField = (fieldProps) => {
-    const {placeholder} = fieldProps;
+export const CustomField = (fieldProps) => {
+    const {placeholder,type} = fieldProps;
 
     return (
         <Field {...fieldProps} >
             {
 
                 (fieldProps) => (<Input {...fieldProps}
-                                        placeholder={placeholder}/>)
+                                        placeholder={placeholder}
+                type={type}/>)
             }
         </Field>
     )
 };
-
 
 const SignInForm = (props) => {
     const {
@@ -61,7 +59,6 @@ const SignInForm = (props) => {
                     />)
                 }
             </Field>*/}
-            <CustomField name='confirmPassword' type='password' placeholder='Confirm Password'/>
             <button
                 className={styles.submitButton}
                 type="submit"
