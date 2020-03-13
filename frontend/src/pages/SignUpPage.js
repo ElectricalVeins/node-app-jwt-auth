@@ -1,8 +1,8 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import Navigation from '../components/Navigation';
-import SignUpForm from '../components/SignUpForm';
-import styles from './SignUpPage.module.scss'
+import SignUpForm from '../components/forms/SignUpForm';
+import styles     from './SignUpPage.module.scss'
 import {NavLink} from "react-router-dom";
 
 const SignUpPage = (props) => {

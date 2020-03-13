@@ -1,15 +1,16 @@
 import React from 'react';
-import {withFormik, Form, Field} from 'formik';
-import Input from "../Input";
-import * as Yup from 'yup';
-import styles from './SignUpForm.module.scss'
-import {CustomField} from "../SignInForm";
+import {withFormik, Form, Field}         from 'formik';
+import Input                             from "../Input";
+import * as Yup                          from 'yup';
+import styles                            from './SignUpForm.module.scss'
+import {CustomField}                     from "../SignInForm";
+import { PASSWORD_REGEXP, PASSWORD_TIP } from '../../../constants';
 
 const signUpSchema = Yup.object().shape({
     firstName: Yup.string().trim().min(4).max(255).required(),
     lastName: Yup.string().trim().min(4).max(255).required(),
     email: Yup.string().email().required(),
-    password: Yup.string().min(8).required(),
+    password: Yup.string().min(8).matches(PASSWORD_REGEXP,PASSWORD_TIP).required(),
     confirmPassword: Yup.string().min(8).oneOf([Yup.ref('password'), null], 'Passwords must match').required(),
 });
 

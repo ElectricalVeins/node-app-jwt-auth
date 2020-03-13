@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import SignInForm from '../components/SignInForm';
-import styles from './SignInPage.module.scss'
+import SignInForm   from '../components/forms/SignInForm';
+import styles       from './SignInPage.module.scss'
 import {NavLink} from "react-router-dom";
 
 const SignInPage = props => {

@@ -1,14 +1,18 @@
 import React     from 'react';
 import { Field } from 'formik';
 
-export default function withField (WrappedComponent) {
+const withField = (options) => (WrappedComponent) => {
+
   return (props) => {
+
     return (
-      <Field {...props} >
+      <Field {...options}>
         {
-          value => <WrappedComponent  {...value} />
+          fieldProps => <WrappedComponent  {...fieldProps} {...props} />
         }
       </Field>
     );
   };
-}
+};
+
+export default withField;
