@@ -5,20 +5,23 @@ import * as Yup from 'yup';
 import styles from './SignInForm.module.scss'
 
 const loginSchema = Yup.object().shape({
-    email: Yup.string().email().matches().required(),
-    password: Yup.string().min(8).required(),
+    email: Yup.string().email().required().label('Email'),
+    password: Yup.string().min(8).required().label('Password'),
     confirmPassword: Yup.string().min(8).required(),
 });
 
 
-const CustomField=(fieldProps)=>{
-    return(
-      <Field {...fieldProps} >
-          {
+const CustomField = (fieldProps) => {
+    const {placeholder} = fieldProps;
 
-              (props)=>(<Input {...props} />)
-          }
-      </Field>
+    return (
+        <Field {...fieldProps} >
+            {
+
+                (fieldProps) => (<Input {...fieldProps}
+                                        placeholder={placeholder}/>)
+            }
+        </Field>
     )
 };
 
@@ -38,26 +41,27 @@ const SignInForm = (props) => {
 
     return (
         <Form className={styles.formContainer}>
-            <Field name="email"
-                   type="text"
-            >
+            <CustomField name='email' type='email' placeholder='Email'/>
+            {/*<Field name="email"
+                   type="text">
                 {
                     (emailProps) => (<Input {...emailProps}
                                             placeholder={'Email'}
 
                     />)
                 }
-            </Field>
-            <Field name='password'
+            </Field>*/}
+            <CustomField name='password' type='password' placeholder='Password'/>
+            {/*    <Field name='password'
                    type='password'
-            >
+                   placeholder={'Password'}>
                 {
                     (passwordProps) => (<Input {...passwordProps}
-                                               placeholder={'Password'}
+
                     />)
                 }
-            </Field>
-            <CustomField name='confirmPassword' type='password' placeholder='Confirm Password' />
+            </Field>*/}
+            <CustomField name='confirmPassword' type='password' placeholder='Confirm Password'/>
             <button
                 className={styles.submitButton}
                 type="submit"
