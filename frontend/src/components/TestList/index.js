@@ -51,7 +51,6 @@ class TestList extends Component {
   }
 
   render () {
-
     const { items } = this.state;
 
     return (

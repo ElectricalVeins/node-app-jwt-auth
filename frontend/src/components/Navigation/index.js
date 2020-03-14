@@ -8,6 +8,7 @@ const Navigation = props => {
         <li><NavLink exact to="/">Home</NavLink></li>
         <li><NavLink to="/login">Sign In</NavLink></li>
         <li><NavLink to="/signup">Sign Up</NavLink></li>
+        <li><NavLink to="/testList">testList</NavLink></li>
       </ul>
 
     </nav>
