@@ -1,11 +1,11 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import Navigation from '../components/Navigation';
-import SignUpForm from '../components/forms/SignUpForm';
+import Navigation from '../../components/Navigation';
+import SignUpForm from '../../components/forms/SignUpForm';
 import styles     from './SignUpPage.module.scss'
 import {NavLink} from "react-router-dom";
 
-const SignUpPage = (props) => {
+const Index = (props) => {
 
     return (
         <div className={styles.screenSignUp}>
@@ -24,4 +24,4 @@ const SignUpPage = (props) => {
     );
 };
 
-export default withRouter(SignUpPage);
+export default withRouter(Index);

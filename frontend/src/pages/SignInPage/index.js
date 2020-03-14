@@ -1,10 +1,10 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import SignInForm   from '../components/forms/SignInForm';
+import SignInForm   from '../../components/forms/SignInForm';
 import styles       from './SignInPage.module.scss'
 import {NavLink} from "react-router-dom";
 
-const SignInPage = props => {
+const Index = props => {
 
     return (
         <div className={styles.screenSignIn}>
@@ -20,4 +20,4 @@ const SignInPage = props => {
     );
 };
 
-export default withRouter(SignInPage);
+export default withRouter(Index);
