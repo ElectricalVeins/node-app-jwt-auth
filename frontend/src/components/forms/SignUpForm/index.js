@@ -6,14 +6,11 @@ import { SIGN_UP_SCHEMA }               from '../../../constants';
 import errorStyles                      from '../StyledErrorMessage/StyledErrorMessage.module.scss'
 import inputStyles                      from '../Input/Input.module.scss'
 
-const errorStyle = errorStyles.errorTip;
-
 const inputStylesProp = {
-	InputStyle: inputStyles.inputStyle,
-	InputValidStyle: inputStyles.inputValidStyle,
-	InputInvalidStyle: inputStyles.inputInvalidStyle
+	inputStyle: inputStyles.inputStyle,
+	inputValidStyle: inputStyles.inputValidStyle,
+	inputInvalidStyle: inputStyles.inputInvalidStyle
 };
-
 const initialValues = {
 	firstName: '',
 	lastName: '',
@@ -21,7 +18,7 @@ const initialValues = {
 	password: '',
 	confirmPassword: '',
 };
-const formInputs = [
+const signUpFormInputs = [
 	{
 		name: 'firstName',
 		placeholder: 'First Name',
@@ -45,8 +42,6 @@ const formInputs = [
 	}
 ];
 
-
-
 const SignUpForm = ( props ) => {
 	const {
 		values,
@@ -57,11 +52,12 @@ const SignUpForm = ( props ) => {
 		<Form className={styles.formContainer}>
 
 			<FieldArray name='SignUpFormFields' render={arrayHelpers => (
-				formInputs.map( fieldValue => (
-					<CustomField key={fieldValue.name}
+				signUpFormInputs.map( fieldValues => (
+					<CustomField key={fieldValues.name}
+											 value={values[fieldValues.name]}
 											 errorStyle={errorStyles.errorTip}
-											 InputStyles={inputStylesProp}
-											 {...fieldValue} />
+											 inputStyles={inputStylesProp}
+											 {...fieldValues} />
 				) ) )}>
 
 

@@ -1,10 +1,17 @@
 import React                                   from 'react';
-import { Field, FieldArray, Form, withFormik } from 'formik';
+import {  FieldArray, Form, withFormik } from 'formik';
 import { LOGIN_SCHEMA }                        from '../../../constants';
-import styles                      from './SignInForm.module.scss';
-import CustomField                 from "../CustomField";
+import styles                                  from './SignInForm.module.scss';
+import CustomField                             from "../CustomField";
+import errorStyles                             from "../StyledErrorMessage/StyledErrorMessage.module.scss";
+import inputStyles                             from "../Input/Input.module.scss";
 
-const formInputs = [
+const inputStylesProp = {
+	inputStyle: inputStyles.inputStyle,
+	inputValidStyle: inputStyles.inputValidStyle,
+	inputInvalidStyle: inputStyles.inputInvalidStyle
+};
+const signInFormInputs = [
 	{
 		name: 'email',
 		placeholder: 'Email address',
@@ -26,8 +33,12 @@ const SignInForm = ( props ) => {
 		<Form className={styles.formContainer}>
 
 			<FieldArray name='SignInFormFields' render={arrayHelpers=>(
-				formInputs.map(fieldValues=>(
-					<CustomField key={fieldValues.name} {...fieldValues} />
+				signInFormInputs.map(fieldValues=>(
+					<CustomField key={fieldValues.name}
+											 value={values[fieldValues.name]}
+											 errorStyle={errorStyles.errorTip}
+											 inputStyles={inputStylesProp}
+											 {...fieldValues} />
 				))
 			)} />
 

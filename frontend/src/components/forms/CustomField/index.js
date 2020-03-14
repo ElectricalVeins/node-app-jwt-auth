@@ -6,14 +6,14 @@ import StyledErrorMessage from "../StyledErrorMessage";
 import PropTypes          from "prop-types";
 
 
-const CustomField = ( {InputStyles, errorStyle,...customFieldProps} ) => {
+const CustomField = ( {inputStyles, errorStyle,...customFieldProps} ) => {
 
 	return (
 		<Field {...customFieldProps} >
 			{
 				( fieldProps ) => (
 					<Label>
-						<Input {...fieldProps} {...customFieldProps} {...InputStyles}/>
+						<Input {...fieldProps} {...customFieldProps} {...inputStyles}/>
 						<StyledErrorMessage {...customFieldProps} className={errorStyle}/>
 					</Label>
 				)
@@ -27,10 +27,10 @@ CustomField.propTypes = {
 	type: PropTypes.string,
 	name: PropTypes.string,
 	errorStyle: PropTypes.string,
-	InputStyles: PropTypes.shape( {
-		InputStyle: PropTypes.string,
-		InputValidStyle: PropTypes.string,
-		InputInvalidStyle: PropTypes.string,
+	inputStyles: PropTypes.shape( {
+		inputStyle: PropTypes.string,
+		inputValidStyle: PropTypes.string,
+		inputInvalidStyle: PropTypes.string,
 	} )
 
 };

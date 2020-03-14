@@ -2,11 +2,11 @@ import React      from 'react';
 import PropTypes  from 'prop-types';
 import classNames from 'classnames';
 
-const Input = ( { field, form, meta, InputInvalidStyle, InputValidStyle, InputStyle, ...props } ) => {
+const Input = ( { field, form, meta, inputInvalidStyle, inputValidStyle, inputStyle, ...props } ) => {
 
-	const inputClassName = classNames( InputStyle, {
-		[ InputInvalidStyle ]: ( meta.touched && meta.error ),
-		[ InputValidStyle ]: ( meta.touched && !meta.error ),
+	const inputClassName = classNames( inputStyle, {
+		[ inputInvalidStyle ]: ( meta.touched && meta.error ),
+		[ inputValidStyle ]: ( meta.touched && !meta.error ),
 	} );
 
 	return (
