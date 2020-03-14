@@ -3,21 +3,20 @@ import { Field }          from "formik";
 import Label              from "../Label";
 import Input              from "../Input";
 import StyledErrorMessage from "../StyledErrorMessage";
-import styles             from "./CustomField.module.scss";
 import PropTypes          from "prop-types";
 
 
-const CustomField = ( fieldProps ) => {
-	const { placeholder, type, name } = fieldProps;
+const CustomField = ( {InputStyles, errorStyle,...customFieldProps} ) => {
+
 	return (
-		<Field {...fieldProps} >
+		<Field {...customFieldProps} >
 			{
 				( fieldProps ) => (
-				<Label>
-					<Input {...fieldProps} placeholder={placeholder} type={type}/>
-					<StyledErrorMessage name={name} className={styles.errorTip}/>
-				</Label>
-			)
+					<Label>
+						<Input {...fieldProps} {...customFieldProps} {...InputStyles}/>
+						<StyledErrorMessage {...customFieldProps} className={errorStyle}/>
+					</Label>
+				)
 			}
 		</Field>
 	);
@@ -26,7 +25,14 @@ const CustomField = ( fieldProps ) => {
 CustomField.propTypes = {
 	placeholder: PropTypes.string,
 	type: PropTypes.string,
-	name:PropTypes.string,
+	name: PropTypes.string,
+	errorStyle: PropTypes.string,
+	InputStyles: PropTypes.shape( {
+		InputStyle: PropTypes.string,
+		InputValidStyle: PropTypes.string,
+		InputInvalidStyle: PropTypes.string,
+	} )
+
 };
 
 export default CustomField
