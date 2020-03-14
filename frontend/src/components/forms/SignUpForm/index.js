@@ -1,59 +1,81 @@
-import React from 'react';
-import {withFormik, Form, Field}         from 'formik';
-import Input                             from "../Input";
-import * as Yup                          from 'yup';
-import styles                            from './SignUpForm.module.scss'
-import {CustomField}                     from "../SignInForm";
-import { PASSWORD_REGEXP, PASSWORD_TIP } from '../../../constants';
+import React                                   from 'react';
+import { withFormik, Form, Field, FieldArray } from 'formik';
+import styles                                  from './SignUpForm.module.scss'
+import CustomField                             from "../CustomField";
+import { SIGN_UP_SCHEMA }                      from '../../../constants';
 
-const signUpSchema = Yup.object().shape({
-    firstName: Yup.string().trim().min(4).max(255).required(),
-    lastName: Yup.string().trim().min(4).max(255).required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().min(8).matches(PASSWORD_REGEXP,PASSWORD_TIP).required(),
-    confirmPassword: Yup.string().min(8).oneOf([Yup.ref('password'), null], 'Passwords must match').required(),
-});
 
-const SignUpForm = (props) => {
-    const {
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-    } = props;
+const initialValues = {
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: '',
+	confirmPassword: '',
+};
+const formInputs = [
+	{
+		name: 'firstName',
+		placeholder: 'First Name',
+		type: 'text',
+	}, {
+		name: 'lastName',
+		placeholder: 'Last Name',
+		type: 'text',
+	}, {
+		name: 'email',
+		placeholder: 'Email address',
+		type: 'email',
+	}, {
+		name: 'password',
+		placeholder: 'Password',
+		type: 'password',
+	}, {
+		name: 'confirmPassword',
+		placeholder: 'Confirm password',
+		type: 'password',
+	}
+];
 
-    return (
-        <Form className={styles.formContainer}>
+const SignUpForm = ( props ) => {
+	const {
+		values,
+		isSubmitting,
+	} = props;
 
-            <CustomField name='firstName' type='text' placeholder='First Name'/>
-            <CustomField name='lastName' type='text' placeholder='Last Name'/>
-            <CustomField name='email' type='email' placeholder='Email'/>
-            <CustomField name='password' type='password' placeholder='Password'/>
-            <CustomField name='confirmPassword' type='password' placeholder='Confirm Password'/>
+	return (
+		<Form className={styles.formContainer}>
 
-            <button type="submit"
-                    className={styles.submitButton}
-                    disabled={isSubmitting}>
-                Create account
-            </button>
-        </Form>
-    );
+			<FieldArray name='SignUpFormFields' render={arrayHelpers => (
+				formInputs.map( fieldValue => (
+					<CustomField key={fieldValue.name} {...fieldValue}/>
+				) ) )}>
+
+
+			</FieldArray>
+
+			<button type="submit"
+							className={styles.submitButton}
+							disabled={isSubmitting}>
+				Create account
+			</button>
+		</Form>
+	);
 };
 
-export default withFormik({
-    mapPropsToValues: () => ({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    }),
-    handleSubmit: (values, formikBag) => {
-        console.log(values);
-        console.log(formikBag);
-    },
-    validationSchema: signUpSchema,
-})(SignUpForm);
+export default withFormik( {
+	mapPropsToValues: () => ( initialValues ),
+	handleSubmit: ( values, formikBag ) => {
+		console.log( values );
+		console.log( formikBag );
+	},
+	validationSchema: SIGN_UP_SCHEMA,
+} )( SignUpForm );
+
+
+/*
+			<CustomField name='firstName' type='text' placeholder='First Name'/>
+			<CustomField name='lastName' type='text' placeholder='Last Name'/>
+			<CustomField name='email' type='email' placeholder='Email'/>
+			<CustomField name='password' type='password' placeholder='Password'/>
+			<CustomField name='confirmPassword' type='password' placeholder='Confirm Password'/>
+*/

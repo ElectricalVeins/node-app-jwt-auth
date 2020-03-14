@@ -1,0 +1,48 @@
+
+.errorTip {
+  position: absolute;
+  color: #86181d;
+  background-color: #ffdce0;
+  border-color: #cea0a5;
+  z-index: 10;
+  display: block;
+  max-width: 450px;
+  padding: 5px 8px;
+  margin: -4px 0 0;
+  font-size: 13px;
+  font-weight: 400;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+
+  &::before {
+    margin-left: -1px;
+    border-width: 6px;
+    position: absolute;
+    bottom: 100%;
+    left: 10px;
+    z-index: 15;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    content: " ";
+    border: solid transparent;
+    border-bottom-color: #cea0a5;
+
+  }
+
+  &::after {
+    border-width: 5px;
+    position: absolute;
+    bottom: 100%;
+    left: 10px;
+    z-index: 15;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    content: " ";
+    border: solid transparent;
+    border-bottom-color: #ffdce0;
+  }
+
+}

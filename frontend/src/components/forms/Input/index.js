@@ -13,7 +13,6 @@ ErrorMsg.propTypes = {
 };*/
 
 const Input = ({ field, form, meta, ...props }) => {
-  console.log(props);
 
   const inputClassName = classNames(styles.field, {
     [styles.fieldInvalid]: (meta.touched && meta.error),
