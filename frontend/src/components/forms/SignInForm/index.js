@@ -23,13 +23,16 @@ const SignInForm = ( props ) => {
 
 			<FieldArray name='fields'
 									render={arrayHelpers => (
-										values.fields.map( fieldValues => (
-											<CustomField key={fieldValues.name}
-																	 value={values[ fieldValues.name ]}
-																	 errorStyle={errorStyles.errorTip}
-																	 inputStyles={inputStylesProp}
-																	 {...fieldValues} />
-										) )
+										values.fields.map( fieldValues => {
+											console.log( fieldValues )
+											return (
+												<CustomField key={fieldValues.name}
+																		 value={values[ fieldValues.name ]}
+																		 errorStyle={errorStyles.errorTip}
+																		 inputStyles={inputStylesProp}
+																		 {...fieldValues} />
+											)
+										} )
 									)}/>
 
 			<button
