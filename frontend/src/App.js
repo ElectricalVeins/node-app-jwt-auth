@@ -3,11 +3,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { THEME_MODE }                             from './constants';
 import AppContext                                 from './state';
+import AuthRoute                                  from "./components/AuthRoute";
+import PrivateRoute                               from "./components/PrivateRoute";
 
 const SignUpPage = lazy( () => import( './pages/SignUpPage/' ) );
 const SignInPage = lazy( () => import( './pages/SignInPage/' ) );
 const HomePage = lazy( () => import( './pages/HomePage' ) );
 const TestList = lazy( () => import( './components/TestList' ) );
+const Dashboard = lazy( () => import('./pages/DashboardPage') );
+const AdminPage = lazy( () => import('./pages/AdminPage') );
 
 const fallbackElem = <div className='loader'>Loading...</div>;
 
@@ -20,6 +24,13 @@ class App extends Component {
 	};
 
 	render() {
+
+		sessionStorage.setItem( 'user', JSON.stringify( {
+			firstName: 'Name',
+			lastName: 'Name',
+			email: 'test',
+			roles: [ 'ADMIN', 'USER' ],
+		} ) );
 
 		const contextValue = {
 			state: this.state,
@@ -39,6 +50,10 @@ class App extends Component {
 										 component={SignInPage}/>
 							<Route path='/testList'
 										 component={TestList}/>
+							<AuthRoute to='login' path='/dashboard'
+												 component={Dashboard}/>
+							<PrivateRoute permissions={[ 'ADMIN' ]} path='/admin'
+														to={'/hell'} component={AdminPage}/>
 						</Switch>
 					</Suspense>
 				</Router>
