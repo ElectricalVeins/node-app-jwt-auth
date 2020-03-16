@@ -1,27 +1,16 @@
-import React                                   from 'react';
-import {  FieldArray, Form, withFormik } from 'formik';
-import { LOGIN_SCHEMA }                        from '../../../constants';
-import styles                                  from './SignInForm.module.scss';
-import CustomField                             from "../CustomField";
-import errorStyles                             from "../StyledErrorMessage/StyledErrorMessage.module.scss";
-import inputStyles                             from "../Input/Input.module.scss";
+import React                            from 'react';
+import { FieldArray, Form, withFormik } from 'formik';
+import { LOGIN_SCHEMA }                 from '../../../constants';
+import styles                           from './SignInForm.module.scss';
+import CustomField                      from "../CustomField";
+import errorStyles                      from "../StyledErrorMessage/StyledErrorMessage.module.scss";
+import inputStyles                      from "../Input/Input.module.scss";
 
 const inputStylesProp = {
 	inputStyle: inputStyles.inputStyle,
 	inputValidStyle: inputStyles.inputValidStyle,
 	inputInvalidStyle: inputStyles.inputInvalidStyle
 };
-const signInFormInputs = [
-	{
-		name: 'email',
-		placeholder: 'Email address',
-		type: 'email',
-	}, {
-		name: 'password',
-		placeholder: 'Password',
-		type: 'password',
-	},
-];
 
 const SignInForm = ( props ) => {
 	const {
@@ -32,15 +21,16 @@ const SignInForm = ( props ) => {
 	return (
 		<Form className={styles.formContainer}>
 
-			<FieldArray name='SignInFormFields' render={arrayHelpers=>(
-				signInFormInputs.map(fieldValues=>(
-					<CustomField key={fieldValues.name}
-											 value={values[fieldValues.name]}
-											 errorStyle={errorStyles.errorTip}
-											 inputStyles={inputStylesProp}
-											 {...fieldValues} />
-				))
-			)} />
+			<FieldArray name='fields'
+									render={arrayHelpers => (
+										values.fields.map( fieldValues => (
+											<CustomField key={fieldValues.name}
+																	 value={values[ fieldValues.name ]}
+																	 errorStyle={errorStyles.errorTip}
+																	 inputStyles={inputStylesProp}
+																	 {...fieldValues} />
+										) )
+									)}/>
 
 			<button
 				className={styles.submitButton}
@@ -54,6 +44,17 @@ const SignInForm = ( props ) => {
 
 export default withFormik( {
 	mapPropsToValues: () => ( {
+		fields: [
+			{
+				name: 'email',
+				placeholder: 'Email address',
+				type: 'email',
+			}, {
+				name: 'password',
+				placeholder: 'Password',
+				type: 'password',
+			},
+		],
 		email: '',
 		password: '',
 	} ),
