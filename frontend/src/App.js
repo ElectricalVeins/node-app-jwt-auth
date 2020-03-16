@@ -4,7 +4,7 @@ import './App.css';
 import { THEME_MODE }                             from './constants';
 import AppContext                                 from './state';
 import AuthRoute                                  from "./components/AuthRoute";
-import PrivateRoute                               from "./components/PrivateRoute";
+import AccessRoute                                from "./components/AccessRoute";
 
 const SignUpPage = lazy( () => import( './pages/SignUpPage/' ) );
 const SignInPage = lazy( () => import( './pages/SignInPage/' ) );
@@ -52,8 +52,8 @@ class App extends Component {
 										 component={TestList}/>
 							<AuthRoute to='login' path='/dashboard'
 												 component={Dashboard}/>
-							<PrivateRoute permissions={[ 'ADMIN' ]} path='/admin'
-														to={'/hell'} component={AdminPage}/>
+							<AccessRoute permissions={[ 'ADMIN' ]} path='/admin'
+													 to={'/hell'} component={AdminPage}/>
 						</Switch>
 					</Suspense>
 				</Router>
