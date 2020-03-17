@@ -19,7 +19,6 @@ const SignInForm = ( props ) => {
 	const {
 		values,
 		isSubmitting,
-		status
 	} = props;
 
 	return (

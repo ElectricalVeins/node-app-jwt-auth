@@ -1,0 +1,23 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  max-height: 70px;
+  background-color: #e3eaef;
+  padding: 0 24px;
+}
+
+.checkbox {
+  display: none;
+}
+
+.burgerBtn {
+  cursor: pointer;
+}
+
+.userCard {
+  background-color: #fafbfd;
+  color: #98a6ad;
+  max-width: 180px;
+}

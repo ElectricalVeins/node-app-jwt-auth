@@ -5,6 +5,7 @@ import CustomField                      from "../CustomField";
 import { SIGN_UP_SCHEMA }               from '../../../constants';
 import errorStyles                      from '../StyledErrorMessage/StyledErrorMessage.module.scss'
 import inputStyles                      from '../Input/Input.module.scss'
+import { signUpUser }                   from "../../../api";
 
 const inputStylesProp = {
 	inputStyle: inputStyles.inputStyle,
@@ -33,9 +34,11 @@ const SignUpForm = ( props ) => {
 
 			</FieldArray>
 
-			<button type="submit"
-							className={styles.submitButton}
-							disabled={isSubmitting}>
+			<button
+				onClick={props.submitForm}
+				type="submit"
+				className={styles.submitButton}
+				disabled={isSubmitting}>
 				Create account
 			</button>
 		</Form>
@@ -73,9 +76,17 @@ export default withFormik( {
 		password: '',
 		confirmPassword: '',
 	} ),
-	handleSubmit: ( values, formikBag ) => {
-		console.log( values );
-		console.log( formikBag );
+	handleSubmit: async ( values, formikBag ) => {
+		formikBag.setSubmitting( true );
+		try {
+			const { email, password } = values;
+
+			const { data: { user } } = await signUpUser( { email, password } );
+
+			formikBag.props.onSubmit( user );
+		} catch ( e ) {
+			alert( e.response.data );
+		}
 	},
 	validationSchema: SIGN_UP_SCHEMA,
 } )( SignUpForm );

@@ -1,10 +1,11 @@
 import { Route, Redirect } from 'react-router-dom';
 import React               from 'react';
 import PropTypes           from 'prop-types';
+import withAppContext      from "../HoCs/withAppContext";
 
 const AuthRoute = ( { to, ...props } ) => {
 	return (
-		sessionStorage.getItem( 'user' )
+		props.user
 		? <Route  {...props} />
 		: <Redirect to={to}/>
 	);
@@ -12,4 +13,4 @@ const AuthRoute = ( { to, ...props } ) => {
 
 AuthRoute.propTypes = {};
 
-export default AuthRoute;
+export default withAppContext( AuthRoute );

@@ -20,13 +20,6 @@ function App() {
 
 	const [ user, setUser ] = useState( null )
 
-	/*		sessionStorage.setItem( 'user', JSON.stringify( {
-				firstName: 'Name',
-				lastName: 'Name',
-				email: 'test',
-				roles: [ 'ADMIN', 'USER' ],
-			} ) );
-			*/
 
 	return (
 		<AppContext.Provider value={{ user, setUser }}>
@@ -40,12 +33,12 @@ function App() {
 						<Route path={[ '/signin', '/sign_in', '/login' ]}
 									 component={SignInPage}/>
 						<Route path='/testList'
-										 component={TestList}/>
-						<AuthRoute to='login' path='/dashboard'
-											 component={Dashboard}/>
-						<AccessRoute permissions={[ 'ADMIN' ]} path='/admin'
-												 to={'/hell'} component={AdminPage}/>
-						</Switch>
+									 component={TestList}/>
+						<Route to='/login' path='/dashboard'
+									 component={Dashboard}/>
+						{/*			<AccessRoute permissions={[ 'ADMIN' ]} path='/admin'
+												 to={'/hell'} component={AdminPage}/>*/}
+					</Switch>
 					</Suspense>
 				</Router>
 			</AppContext.Provider>
