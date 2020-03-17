@@ -1,12 +1,17 @@
-import { loginByEmail, signTokenPair } from '../middlewares/authentication';
-import express                         from 'express';
-import RefreshTokenController          from '../controllers/refreshToken.js';
-import jwt                             from 'jsonwebtoken';
+import {
+	loginByEmail,
+	signTokenPair,
+	signUpUser
+}                             from '../middlewares/authentication';
+import express                from 'express';
+import RefreshTokenController from '../controllers/refreshToken.js';
+import jwt                    from 'jsonwebtoken';
 import {
 	checkRefreshToken,
 	decodeAccessToken,
-	findRefreshToken, updateRefreshToken
-}                                      from '../middlewares/authentication/checkRefreshToken.js';
+	findRefreshToken,
+	updateRefreshToken
+}                             from '../middlewares/authentication/checkRefreshToken.js';
 
 
 const authenticationRoute = express.Router();
@@ -17,11 +22,11 @@ authenticationRoute.post( '/sign_in',
 	RefreshTokenController.createRefreshToken
 );
 
-/*authenticationRoute.post( 'sign_up',
-	createUser,
+authenticationRoute.post( 'sign_up',
+	signUpUser,
 	signTokenPair,
 	RefreshTokenController.createRefreshToken
-)*/
+);
 
 authenticationRoute.post( '/refresh_auth',
 	checkRefreshToken,
