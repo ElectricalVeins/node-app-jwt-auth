@@ -2,7 +2,7 @@
   "development": {
     "username": "eveins",
     "password": "8844",
-    "database": "fd_db",
+    "database": "fd_training",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "migrationStorage": "json",

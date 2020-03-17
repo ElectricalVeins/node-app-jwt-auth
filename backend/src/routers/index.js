@@ -15,11 +15,10 @@ router.use( userRouter );
 router.use( taskRouter );
 
 
-
 router.use(
-  ErrorHandlers.handleValidationError,
-  ErrorHandlers.handleApplicationError,
-  ErrorHandlers.handleSequelizeError,
+	ErrorHandlers.handleValidationError,
+	ErrorHandlers.handleApplicationError,
+	ErrorHandlers.handleSequelizeError,
 );
 
 export default router;
