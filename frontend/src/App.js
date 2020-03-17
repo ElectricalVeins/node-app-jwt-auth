@@ -1,10 +1,10 @@
-import React, { lazy, Suspense, Component }       from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { lazy, Suspense, Component, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route }     from 'react-router-dom';
 import './App.css';
-import { THEME_MODE }                             from './constants';
-import AppContext                                 from './state';
-import AuthRoute                                  from "./components/AuthRoute";
-import AccessRoute                                from "./components/AccessRoute";
+import { THEME_MODE }                                 from './constants';
+import AppContext                                     from './store';
+import AuthRoute                                      from "./components/AuthRoute";
+import AccessRoute                                    from "./components/AccessRoute";
 
 const SignUpPage = lazy( () => import( './pages/SignUpPage/' ) );
 const SignInPage = lazy( () => import( './pages/SignInPage/' ) );
@@ -15,51 +15,42 @@ const AdminPage = lazy( () => import('./pages/AdminPage') );
 
 const fallbackElem = <div className='loader'>Loading...</div>;
 
-export const ThemeContext = React.createContext( 'dark' );
 
-class App extends Component {
+function App() {
 
-	state = {
-		theme: THEME_MODE.LIGHT
-	};
+	const [ user, setUser ] = useState( null )
 
-	render() {
+	/*		sessionStorage.setItem( 'user', JSON.stringify( {
+				firstName: 'Name',
+				lastName: 'Name',
+				email: 'test',
+				roles: [ 'ADMIN', 'USER' ],
+			} ) );
+			*/
 
-		sessionStorage.setItem( 'user', JSON.stringify( {
-			firstName: 'Name',
-			lastName: 'Name',
-			email: 'test',
-			roles: [ 'ADMIN', 'USER' ],
-		} ) );
-
-		const contextValue = {
-			state: this.state,
-			setState: this.setState.bind( this )
-		};
-
-		return (
-			<AppContext.Provider value={contextValue}>
-				<Router>
-					<Suspense fallback={fallbackElem}>
-						<Switch>
-							<Route exact path="/"
-										 component={HomePage}/>
-							<Route path={[ '/signup', '/sign_up' ]}
-										 component={SignUpPage}/>
-							<Route path={[ '/signin', '/sign_in', '/login' ]}
-										 component={SignInPage}/>
-							<Route path='/testList'
+	return (
+		<AppContext.Provider value={{ user, setUser }}>
+			<Router>
+				<Suspense fallback={fallbackElem}>
+					<Switch>
+						<Route exact path="/"
+									 component={HomePage}/>
+						<Route path={[ '/signup', '/sign_up' ]}
+									 component={SignUpPage}/>
+						<Route path={[ '/signin', '/sign_in', '/login' ]}
+									 component={SignInPage}/>
+						<Route path='/testList'
 										 component={TestList}/>
-							<AuthRoute to='login' path='/dashboard'
-												 component={Dashboard}/>
-							<AccessRoute permissions={[ 'ADMIN' ]} path='/admin'
-													 to={'/hell'} component={AdminPage}/>
+						<AuthRoute to='login' path='/dashboard'
+											 component={Dashboard}/>
+						<AccessRoute permissions={[ 'ADMIN' ]} path='/admin'
+												 to={'/hell'} component={AdminPage}/>
 						</Switch>
 					</Suspense>
 				</Router>
 			</AppContext.Provider>
 		);
 	}
-}
+
 
 export default App;

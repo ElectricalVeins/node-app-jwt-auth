@@ -1,10 +1,22 @@
 import React          from 'react';
 import { withRouter } from 'react-router';
+import { Redirect }   from 'react-router-dom';
 import SignInForm     from '../../components/forms/SignInForm';
 import styles         from './SignInPage.module.scss'
 import { NavLink }    from "react-router-dom";
+import withAppContext from "../../components/HoCs/withAppContext";
 
-const Index = props => {
+const SignInPage = props => {
+
+	const { user, setUser } = props;
+
+	const formSubmitHandler = ( user ) => {
+		setUser( user );
+	};
+
+	if( user ) {
+		return <Redirect to={'/'}/>
+	}
 
 	return (
 		<div className={styles.screenSignIn}>
@@ -16,10 +28,10 @@ const Index = props => {
 			</div>
 			<div className={styles.formWrapperSignIn}>
 				<h1 className={styles.loginTextSignIn}>login to your account</h1>
-				<SignInForm/>
+				<SignInForm onSubmit={formSubmitHandler}/>
 			</div>
 		</div>
 	);
 };
 
-export default withRouter( Index );
+export default withAppContext( withRouter( SignInPage ) );

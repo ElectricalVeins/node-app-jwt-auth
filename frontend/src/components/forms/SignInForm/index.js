@@ -1,10 +1,13 @@
 import React                            from 'react';
 import { FieldArray, Form, withFormik } from 'formik';
 import { LOGIN_SCHEMA }                 from '../../../constants';
-import styles                           from './SignInForm.module.scss';
-import CustomField                      from "../CustomField";
-import errorStyles                      from "../StyledErrorMessage/StyledErrorMessage.module.scss";
-import inputStyles                      from "../Input/Input.module.scss";
+
+import styles        from './SignInForm.module.scss';
+import CustomField   from "../CustomField";
+import errorStyles   from "../StyledErrorMessage/StyledErrorMessage.module.scss";
+import inputStyles   from "../Input/Input.module.scss";
+import { loginUser } from "../../../api";
+
 
 const inputStylesProp = {
 	inputStyle: inputStyles.inputStyle,
@@ -16,6 +19,7 @@ const SignInForm = ( props ) => {
 	const {
 		values,
 		isSubmitting,
+		status
 	} = props;
 
 	return (
@@ -24,7 +28,6 @@ const SignInForm = ( props ) => {
 			<FieldArray name='fields'
 									render={arrayHelpers => (
 										values.fields.map( fieldValues => {
-											console.log( fieldValues )
 											return (
 												<CustomField key={fieldValues.name}
 																		 value={values[ fieldValues.name ]}
@@ -36,6 +39,7 @@ const SignInForm = ( props ) => {
 									)}/>
 
 			<button
+				onClick={props.submitForm}
 				className={styles.submitButton}
 				type="submit"
 				disabled={isSubmitting}>
@@ -61,9 +65,17 @@ export default withFormik( {
 		email: '',
 		password: '',
 	} ),
-	handleSubmit: ( values, formikBag ) => {
-		console.log( values );
-		console.log( formikBag );
+	handleSubmit: async ( values, formikBag ) => {
+		formikBag.setSubmitting( true );
+		try {
+			const { email, password } = values;
+
+			const { data: { user } } = await loginUser( { email, password } );
+
+			formikBag.props.onSubmit( user );
+		} catch ( e ) {
+			alert( e.response.data );
+		}
 	},
 	validationSchema: LOGIN_SCHEMA,
 } )( SignInForm );

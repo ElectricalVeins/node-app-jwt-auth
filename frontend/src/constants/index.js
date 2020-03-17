@@ -49,3 +49,6 @@ export const LOGIN_SCHEMA = Yup.object().shape( {
 							 .required()
 							 .label( 'Password' ),
 } );
+
+export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN_KEY';
+export const REFRESH_TOKEN_KEY = 'REFRESH_TOKEN_KEY';
