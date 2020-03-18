@@ -1,10 +1,11 @@
-import React, { lazy, Suspense, Component, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route }     from 'react-router-dom';
+import React, { lazy, Suspense, Component, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route }                from 'react-router-dom';
 import './App.css';
-import { THEME_MODE }                                 from './constants';
-import AppContext                                     from './store';
-import AuthRoute                                      from "./components/AuthRoute";
-import AccessRoute                                    from "./components/AccessRoute";
+import { REFRESH_TOKEN_KEY, THEME_MODE }                         from './constants';
+import AppContext                                                from './store';
+import AuthRoute                                                 from "./components/AuthRoute";
+import AccessRoute                                               from "./components/AccessRoute";
+import { loginUserByRefreshToken }                               from "./api/auth";
 
 const SignUpPage = lazy( () => import( './pages/SignUpPage/' ) );
 const SignInPage = lazy( () => import( './pages/SignInPage/' ) );
@@ -20,6 +21,15 @@ function App() {
 
 	const [ user, setUser ] = useState( null )
 
+	useEffect( () => {
+		const refreshToken = localStorage.getItem( REFRESH_TOKEN_KEY );
+		if( refreshToken ) {
+			loginUserByRefreshToken().then( res => {
+				const { data: { user } } = res;
+				setUser( user );
+			} )
+		}
+	}, [] );
 
 	return (
 		<AppContext.Provider value={{ user, setUser }}>
@@ -39,11 +49,11 @@ function App() {
 						{/*			<AccessRoute permissions={[ 'ADMIN' ]} path='/admin'
 												 to={'/hell'} component={AdminPage}/>*/}
 					</Switch>
-					</Suspense>
-				</Router>
-			</AppContext.Provider>
-		);
-	}
+				</Suspense>
+			</Router>
+		</AppContext.Provider>
+	);
+}
 
 
 export default App;

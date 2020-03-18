@@ -6,7 +6,7 @@ import styles        from './SignInForm.module.scss';
 import CustomField   from "../CustomField";
 import errorStyles   from "../StyledErrorMessage/StyledErrorMessage.module.scss";
 import inputStyles   from "../Input/Input.module.scss";
-import { loginUser } from "../../../api";
+import { loginUser } from "../../../api/auth";
 
 
 const inputStylesProp = {

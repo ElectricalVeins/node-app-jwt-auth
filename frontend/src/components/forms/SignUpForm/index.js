@@ -5,7 +5,7 @@ import CustomField                      from "../CustomField";
 import { SIGN_UP_SCHEMA }               from '../../../constants';
 import errorStyles                      from '../StyledErrorMessage/StyledErrorMessage.module.scss'
 import inputStyles                      from '../Input/Input.module.scss'
-import { signUpUser }                   from "../../../api";
+import { signUpUser }                   from "../../../api/auth";
 
 const inputStylesProp = {
 	inputStyle: inputStyles.inputStyle,
