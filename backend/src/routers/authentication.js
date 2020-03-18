@@ -10,7 +10,8 @@ import {
 	checkRefreshToken,
 	decodeAccessToken,
 	findRefreshToken,
-	updateRefreshToken
+	updateRefreshToken,
+	signAccessToken
 }                             from '../middlewares/authentication/checkRefreshToken.js';
 
 
@@ -35,17 +36,30 @@ authenticationRoute.post( '/refresh_auth',
 	updateRefreshToken,
 	async ( req, res, next ) => {
 		try {
-
 			return res.send( {
 				refreshToken: req.refreshToken.value,
 				accessToken: jwt.sign( req.accessTokenPayload, 'secret', {
-					expiresIn: '0.5h',
+					expiresIn: '0.2h',
 				} )
 			} );
 
 		} catch ( e ) {
 			next( e );
 		}
+	}
+);
+
+authenticationRoute.post( '/refresh_tokens',
+	checkRefreshToken,
+	decodeAccessToken,
+	findRefreshToken,
+	updateRefreshToken,
+	signAccessToken,
+	async ( req, res, next ) => {
+		res.send( {
+			accessToken: req.accessToken,
+			refreshToken: req.refreshToken,
+		} );
 	}
 );
 
