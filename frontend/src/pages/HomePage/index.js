@@ -3,7 +3,7 @@ import { withRouter, Route }          from 'react-router';
 import styles                         from './HomePage.module.scss';
 import Navigation                     from '../../components/Navigation';
 import withAppContext                 from '../../components/HoCs/withAppContext.js';
-import { getUsers }                   from "../../api/admin";
+import { getUsers }                   from "../../api/admin.js";
 
 class HomePage extends Component {
 
@@ -27,10 +27,8 @@ class HomePage extends Component {
 				<h1>{JSON.stringify( appState, null, 4 )}</h1>
 
 				<button onClick={() => {
-					getUsers().then( res => {
-						console.table( res.data )
-					} )
-				}}>
+          getUsers()
+        }}>
 					GET IT!
 				</button>
 

@@ -17,7 +17,7 @@ export const ROLE = Object.freeze( {
 } );
 
 /**
- * @typedef {Symbol} ActionType
+ * @typedef {string} ActionType
  */
 
 /**
@@ -25,10 +25,12 @@ export const ROLE = Object.freeze( {
  * @enum {ActionType}
  */
 export const ACTION = Object.freeze( {
-	CREATE: Symbol( 'CREATE' ),
-	READ: Symbol( 'READ' ),
-	UPDATE: Symbol( 'UPDATE' ),
-	DELETE: Symbol( 'DELETE' ),
+	CREATE: 'CREATE',
+	READ: 'READ',
+	UPDATE: 'UPDATE',
+	DELETE: 'DELETE',
+	LOGIN: 'LOGIN',
+	SIGN_UP: 'SIGN_UP',
 } );
 
 /**
