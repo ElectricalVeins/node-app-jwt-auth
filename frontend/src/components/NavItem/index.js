@@ -13,8 +13,7 @@ const NavItem = ( props ) => {
 				{
 					isMenuOpen
 					? ( <span>{props.children}</span> )
-					: null
-
+					: ( <span>{null}</span> )
 				}
 			</NavLink>
 		</li>
@@ -28,6 +27,7 @@ NavItem.propTypes = {
 	to: PropTypes.string.isRequired,
 	children: PropTypes.node,
 	iconOptions: PropTypes.object,
+	isMenuOpen: PropTypes.bool,
 };
 
 export default NavItem;
