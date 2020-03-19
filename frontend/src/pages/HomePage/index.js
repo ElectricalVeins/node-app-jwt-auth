@@ -9,13 +9,13 @@ class HomePage extends Component {
 
 	render() {
 		/*//своцства класса
-		this.props;
-		this.state;
-		this.context;
+    this.props;
+    this.state;
+    this.context;
 
-		//методы экзмепляра
-		this.setState();
-		this.forceUpdate()*/
+    //методы экзмепляра
+    this.setState();
+    this.forceUpdate()*/
 
 		const contextValue = this.props;
 
@@ -27,8 +27,9 @@ class HomePage extends Component {
 				<h1>{JSON.stringify( appState, null, 4 )}</h1>
 
 				<button onClick={() => {
-          getUsers()
-        }}>
+					getUsers()
+
+				}}>
 					GET IT!
 				</button>
 
