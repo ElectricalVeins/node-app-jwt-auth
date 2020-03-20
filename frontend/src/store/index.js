@@ -1,5 +1,13 @@
-import React from 'react';
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware             from 'redux-saga';
+import rootReducer                      from '../reducers';
+import rootSaga                         from '../sagas';
 
-const AppContext = React.createContext( null );
+const configureStore = () => {
+  const sagaMw = createSagaMiddleware();
+  const store = createStore( rootReducer, sagaMw );
+  sagaMw.run( rootSaga );
+  return store
+};
 
-export default AppContext;
+export default configureStore();

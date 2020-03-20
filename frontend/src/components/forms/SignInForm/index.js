@@ -65,15 +65,31 @@ export default withFormik( {
 		password: '',
 	} ),
 	handleSubmit: async ( values, formikBag ) => {
-		formikBag.setSubmitting( true );
-		try {
-			const { email, password } = values;
 
-			const { data: { user } } = await loginUser( { email, password } );
+    /*
 
-			formikBag.props.onSubmit( user );
-		} catch ( e ) {
-			alert( e.response.data );
+    store.dispatch({
+    type:ACTION_TYPE.LOGIN_USER_REQUEST,
+    data:values
+    })
+
+    или обернуть в connect и mapStateToProps & mapDispatchToProps
+
+     */
+
+
+    formikBag.setSubmitting( true );
+    try {
+      const { email, password } = values;
+
+      const { data: { user } } = await loginUser( {
+        email,
+        password
+      } );
+
+      formikBag.props.onSubmit( user );
+    } catch ( e ) {
+      alert( e.response.data );
 		}
 	},
 	validationSchema: LOGIN_SCHEMA,

@@ -19,6 +19,7 @@ const fallbackElem = <div className='loader'>Loading...</div>;
 
 function App() {
 
+/*
 	const [ user, setUser ] = useState( null )
 
 	useEffect( () => {
@@ -30,9 +31,9 @@ function App() {
 			} )
 		}
 	}, [] );
+*/
 
 	return (
-		<AppContext.Provider value={{ user, setUser }}>
 			<Router>
 				<Suspense fallback={fallbackElem}>
 					<Switch>
@@ -51,7 +52,6 @@ function App() {
 					</Switch>
 				</Suspense>
 			</Router>
-		</AppContext.Provider>
 	);
 }
 
