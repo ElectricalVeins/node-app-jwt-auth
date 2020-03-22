@@ -17,8 +17,7 @@ const DashboardNav = ( props ) => {
 
 	const { isMenuOpen } = props;
 	const logoClass = classNames( { [ styles.navLogo ]: !isMenuOpen } );
-	const computedClassName = classNames( styles.navigationContainer,
-		{
+	const computedClassName = classNames( styles.navigationContainer, {
 			[ styles.navigationContainerOpen ]: isMenuOpen,
 			[ styles.navigationContainerClose ]: !isMenuOpen
 		}
