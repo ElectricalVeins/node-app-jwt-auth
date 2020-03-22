@@ -1,0 +1,31 @@
+@import "src/view/pages/SignInPage/SignInPage.module";
+
+.screenSignUp{
+  @extend .screenSignIn;
+}
+
+.loginTextH1{
+@extend .loginTextSignIn;
+}
+.formWrapperSignUp{
+  @extend .formWrapperSignIn;
+}
+
+.loginTextH2{
+  @extend .loginTextSignIn;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.textWrapperSignUp{
+@extend .textWrapperSignIn
+}
+
+.loginLinkSignUp{
+@extend .loginLinkSignIn;
+}
+
+.loginLinkWrapperSignUp {
+@extend .loginLinkWrapperSignIn;
+}
+

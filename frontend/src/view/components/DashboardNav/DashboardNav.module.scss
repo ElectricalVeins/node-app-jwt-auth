@@ -1,0 +1,45 @@
+@import "src/view/pages/DashboardPage/DashboardPage.module";
+
+.navigationContainer {
+  background-color: #455A89;
+  min-height: 100vh;
+
+  padding: 16px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all ease-in-out 0.25s;
+}
+
+.navigationContainerOpen {
+  min-width: 250px;
+
+}
+
+.navigationContainerClose {
+  min-width: 70px;
+
+  li {
+    margin-top: 0px;
+    padding: 15px 0px;
+
+    &:hover {
+      background-color: #8477E4;
+    }
+  }
+}
+
+
+.navLogo {
+  width: 48px;
+  height: 48px;
+}
+
+.divider {
+  @extend .text;
+  margin-top: 16px;
+  width: 100%;
+  text-align: center;
+  // border-bottom: 1px solid grey;
+}

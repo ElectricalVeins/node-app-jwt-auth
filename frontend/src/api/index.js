@@ -2,7 +2,7 @@ import axios                                   from 'axios';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../constants";
 
 const axiosInstance = axios.create( {
-  baseURL: 'http://localhost:3030/api',
+  baseURL: 'http://localhost:5000/api',
   headers: {
     'Content-type': 'application/json'
   },

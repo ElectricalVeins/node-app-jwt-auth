@@ -8,8 +8,8 @@ import { checkAuthorization } from './../middlewares/authorization';
 
 const router = express.Router();
 
-//router.use( authenticationRoute );
-//router.use( checkAuthorization );
+router.use( authenticationRoute );
+router.use( checkAuthorization );
 router.use( '/admin', adminRouter );
 router.use( userRouter );
 router.use( taskRouter );
