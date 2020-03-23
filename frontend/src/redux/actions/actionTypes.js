@@ -7,4 +7,5 @@ export const ACTION_TYPES = {
   SIGN_UP_USER_SUCCESS: Symbol(),
   SIGN_UP_USER_ERROR: Symbol(),
 
+  APP_SET_USER: Symbol(),
 };

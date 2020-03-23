@@ -6,11 +6,12 @@ import http                                    from "./index";
 const authenticateUser = async ( url, data ) => {
 	try {
     const response = await http.post( url, data );
-    console.dir( response )
+
     const { data: { tokenPair } } = response;
 
     sessionStorage.setItem( ACCESS_TOKEN_KEY, tokenPair.accessToken );
     localStorage.setItem( REFRESH_TOKEN_KEY, tokenPair.refreshToken );
+
     return response;
   } catch ( e ) {
 		sessionStorage.removeItem( ACCESS_TOKEN_KEY );

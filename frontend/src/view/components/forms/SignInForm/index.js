@@ -60,7 +60,6 @@ const mapDispatchToProps = ( dispatch ) => {
 };
 
 const mapStateToProps = ( state ) => {
-  console.log( state.authStore )
   return state.authStore
 };
 
