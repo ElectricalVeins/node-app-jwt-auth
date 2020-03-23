@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 5px 10px;
   transition: all ease-in 0.15s;
   @extend .text;
 
@@ -32,11 +31,6 @@
 .activeNav {
   @extend .navItem;
   opacity: 1;
-}
-
-.liClassName {
-  margin-top: 15px;
-  width: 100%;
 }
 
 .icon {

@@ -4,16 +4,24 @@
   background-color: #455A89;
   min-height: 100vh;
 
-  padding: 16px 0px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: all ease 0.25s;
+
+  a {
+    padding: 16px 10px;
+  }
+
+  ul {
+    width: 100%;
+  }
 }
 
 .navigationContainerOpen {
   min-width: 250px;
+
 
   span{
     transition: all ease 0.25s;
@@ -25,15 +33,14 @@
 .navigationContainerClose {
   min-width: 70px;
 
-  span{
+  span {
     opacity: 0;
     position: absolute;
     left: -180px;
   }
 
-  li {
-    margin-top: 0px;
-    padding: 15px 0px;
+  a {
+
 
     &:hover {
       background-color: #8477E4;
@@ -49,8 +56,8 @@
 
 .divider {
   @extend .text;
-  margin-top: 16px;
-  width: 100%;
-  text-align: center;
+  margin: 12px 50px;
+
+  align-self: flex-start;
   // border-bottom: 1px solid grey;
 }

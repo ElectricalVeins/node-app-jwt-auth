@@ -9,7 +9,7 @@ const Navigation = props => {
         <li><NavLink to="/login">Sign In</NavLink></li>
         <li><NavLink to="/signup">Sign Up</NavLink></li>
         <li><NavLink to="/testList">testList</NavLink></li>
-        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+        <li><NavLink to="/dashboard/item_1">Dashboard</NavLink></li>
       </ul>
 
     </nav>
